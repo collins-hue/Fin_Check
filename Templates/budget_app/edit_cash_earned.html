@@ -1,0 +1,58 @@
+
+{% extends '../base.html' %}
+{% load static %}
+{% block content %}
+<div class="content">
+    
+    <div class="container">
+
+      
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          
+          <div class="row align-items-center">
+            <div class="col-lg-7 mb-5 mb-lg-0">
+
+              <h2 class="mb-5">Edit Added Revenue. <br> It's easy.</h2>
+
+              <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm">
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    {% csrf_token %}
+            {{ form.as_p }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <input type="submit" value="Add Revenue" class="btn btn-primary rounded-0 py-2 px-4">
+                    <span class="submitting"></span>
+                  </div>
+                </div>
+              </form>
+
+              <div id="form-message-warning mt-4"></div> 
+              <div id="form-message-success">
+                Revenue Added Succesfully, thank you!
+              </div>
+              <div class="">
+                <h3 class="mb-4">Yikes! Expense.</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil deleniti itaque similique magni. Magni, laboriosam perferendis maxime!</p>
+                <p><a href="{% url 'budget_app:add_expense' %}">Gotta Do it Now</a></p>
+              </div>
+              <div class="">
+                <h3 class="mb-4">Add Budget.</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil deleniti itaque similique magni. Magni, laboriosam perferendis maxime!</p>
+                <p><a href="{% url 'budget_app:set_budget' %}">More Budget!</a></p>
+              </div>
+            </div>
+            <div class="col-lg-4 ml-auto">
+              <h3 class="mb-4">Let's check the Financial report.</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil deleniti itaque similique magni. Magni, laboriosam perferendis maxime!</p>
+              <p><a href="{% url 'budget_app:budget_report' %}">Check Financial Report</a></p>
+            </div>
+          </div>
+        </div>  
+        </div>
+      </div>
+  </div>
+{% endblock %}

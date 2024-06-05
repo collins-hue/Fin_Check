@@ -1,25 +1,83 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Budget Report</title>
-</head>
-<body>
-    <h1>Budget Report</h1>
-    {% if last_budget %}
-        <h2>Total Budget: ${{ last_budget.amount }}</h2>
-    {% else %}
-        <h2>No Budget Set</h2>
+ 
+{% extends '../base.html' %}
+{% load static %}
+{% block content %}
+  <div class="content">
+    
+    <div class="container">
+
+      
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          
+          <div class="row align-items-center">
+            <div class="col-lg-7 mb-5 mb-lg-0">
+
+              <h2 class="mb-5">Budget Report <br> Total Budget: ${{ last_budget.amount }}</h2>
+
+              <div >
+                {% if last_budget %}
+              <p class="mb-4">Total Budget: ${{ last_budget.amount }}</h3>
+              {% else %}
+        <p>No Budget Set</p>
     {% endif %}
-    <h2>Total Expenses: ${{ total_expenses }}</h2>
-    <h2>Remaining Budget: ${{ remaining_budget }}</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil deleniti itaque similique magni. Magni, laboriosam perferendis maxime!</p>
+              <p><a href="{% url 'budget_app:add_expense' %}">Add Expense</a></p>
+              <p>Total Cash Earned: ${{ total_cash_earned }}</p>
+              <p>Total Cash Earned: ${{ total_cash_earned }}</p>
+    <p>Total Expenses: ${{ total_expenses }}</p>
+    <p>Remaining Budget: ${{ remaining_budget }}</p>
     <h3>Expenses:</h3>
     <ul>
         {% for expense in expenses %}
         <li>{{ expense.description }}: ${{ expense.amount }}</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'budget_app:add_expense' %}">Add Expense</a>
-    <a href="{% url 'budget_app:set_budget' %}">Set Budget</a>
-    <a href="{% url 'budget_app:pdf_report' %}">Download PDF Report</a>
-</body>
-</html>
+    <h3>Cash Earned:</h3>
+        <ul>
+          {% for cash in cash_earned %}
+          <li>{{ cash.description }}: ${{ cash.amount }} <a href="{% url 'budget_app:edit_cash_earned' cash.pk %}">Edit</a></li>
+          {% endfor %}
+        </ul>
+            </div>
+
+            </div>
+            
+            <div class="col-lg-4 ml-auto">
+                <h3 class="mb-4">Expense(s)</h3>
+                <ul>
+                    {% for expense in expenses %}
+                    <li>{{ expense.description }}: ${{ expense.amount }}</li>
+                    {% endfor %}
+                </ul>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil deleniti itaque similique magni. Magni, laboriosam perferendis maxime!</p>
+                <p><a href="{% url 'budget_app:set_budget' %}">Set Budget</a></p>
+              </div>
+              <div class="">
+                <h3 class="mb-4">Cash Earned.</h3>
+                <ul>
+                    {% for cash in cash_earned %}
+                    <li>{{ cash.description }}: ${{ cash.amount }} <a href="{% url 'budget_app:edit_cash_earned' cash.pk %}">Edit</a></li>
+                    {% endfor %}
+                </ul>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil deleniti itaque similique magni. Magni, laboriosam perferendis maxime!</p>
+                <p><a href="{% url 'budget_app:add_cash_earned' %}">Cash Earned</a></p>
+              </div>
+              <div class="">
+                <h3 class="mb-4">Adding Expenses.</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil deleniti itaque similique magni. Magni, laboriosam perferendis maxime!</p>
+                <p><a href="{% url 'budget_app:add_expense' %}">Do it now!</a></p>
+              </div>
+              <div class="">
+                <h3 class="mb-4">Get a general report in your device.</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil deleniti itaque similique magni. Magni, laboriosam perferendis maxime!</p>
+                <p><a href="{% url 'budget_app:pdf_report' %}">Download PDF Report</a></p>
+              </div>
+          </div>
+        </div>  
+        </div>
+      </div>
+  </div>
+    
+    
+{% endblock %}
