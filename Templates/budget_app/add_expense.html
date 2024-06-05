@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Expense</title>
+    </head>
+    <body>
+        <h1>Add Expense</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit"> Save</button>
+        </form>
+        <a href="{% url 'budget_app:budget_report' %}">Budget Report</a>
+    <a href="{% url 'budget_app:set_budget' %}">Set Budget</a>
+        <a href="{% url 'budget_app:pdf_report' %}">Download PDF Report</a>
+    </body>
+</html>

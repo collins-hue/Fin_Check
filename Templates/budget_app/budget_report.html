@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Budget Report</title>
+</head>
+<body>
+    <h1>Budget Report</h1>
+    {% if last_budget %}
+        <h2>Total Budget: ${{ last_budget.amount }}</h2>
+    {% else %}
+        <h2>No Budget Set</h2>
+    {% endif %}
+    <h2>Total Expenses: ${{ total_expenses }}</h2>
+    <h2>Remaining Budget: ${{ remaining_budget }}</h2>
+    <h3>Expenses:</h3>
+    <ul>
+        {% for expense in expenses %}
+        <li>{{ expense.description }}: ${{ expense.amount }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'budget_app:add_expense' %}">Add Expense</a>
+    <a href="{% url 'budget_app:set_budget' %}">Set Budget</a>
+    <a href="{% url 'budget_app:pdf_report' %}">Download PDF Report</a>
+</body>
+</html>
